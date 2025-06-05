@@ -203,4 +203,36 @@ mod tests {
         lisaa_vektoriin(&mut vec, "Tuomas".to_string());
         assert_eq!(vec.get(2).unwrap(), "Tuomas");
     }
+
+    #[test]
+    fn testaa_vektorin_poisto() {
+        let mut vec: Vec<String> = Vec::new();
+
+        lisaa_vektoriin(&mut vec, "Heinä".to_string());
+        lisaa_vektoriin(&mut vec, "Maissi".to_string());
+        lisaa_vektoriin(&mut vec, "Kaura".to_string());
+        poista_vektorista(&mut vec, 1);
+        assert_eq!(vec.get(1).unwrap(), "Kaura");
+    }
+
+    #[test]
+    fn testaa_hajautustaulun_lisays() {
+        let mut taulu: HashMap<String, i32> = HashMap::new();
+        
+        lisaa_hajautustauluun(&mut taulu, "Keltainen".to_string(), 10);
+        lisaa_hajautustauluun(&mut taulu, "Vihreä".to_string(), 29);
+        lisaa_hajautustauluun(&mut taulu, "Sininen".to_string(), 38);
+        assert_eq!(taulu.get("Keltainen").unwrap(), &10);
+    }
+
+    #[test]
+    fn testaa_hajautustaulun_poisto() {
+        let mut taulu: HashMap<String, i32> = HashMap::new();
+        
+        lisaa_hajautustauluun(&mut taulu, "Sveitsi".to_string(), 132);
+        lisaa_hajautustauluun(&mut taulu, "Kroatia".to_string(), 123);
+        lisaa_hajautustauluun(&mut taulu, "Albania".to_string(), 231);
+        poista_hajautustaulusta(&mut taulu, "Kroatia".to_string());
+        assert_eq!(taulu.get("Kroatia"), None);
+    }
 }
